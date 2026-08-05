@@ -1,4 +1,5 @@
 
+use rand::seq::SliceRandom;
 //Building blocks of Cards 
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -17,17 +18,18 @@ impl Suit {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Rank {
     Value(u8),
-    Jack,
-    Queen,
-    King,
-    Ace,
+    Jack(u8),
+    Queen(u8),
+    King(u8),
+    Ace(u8),
 }
 
 impl Rank {
     pub const ALL: [Rank; 13] = [
         Rank::Value(2), Rank::Value(3), Rank::Value(4), Rank::Value(5),
         Rank::Value(6), Rank::Value(7), Rank::Value(8), Rank::Value(9),
-        Rank::Value(10), Rank::Jack, Rank::Queen, Rank::King, Rank::Ace,
+        Rank::Value(10), Rank::Jack(11), Rank::Queen(12), Rank::King(13),
+        Rank::Ace(14),
     ];
 }
 
@@ -46,9 +48,12 @@ impl Deck {
         let mut cards = Vec::new();
         for suit in Suit::ALL {
             for rank in Rank::ALL {
-                cards.push(Card {rank, suit });
+                cards.push(Card { rank, suit });
             }
         }
+    //shuffle deck    
+    let mut rng = rand::rng();
+    cards.shuffle(&mut rng);
     Deck { cards }
     }   
 }
