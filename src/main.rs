@@ -1,11 +1,7 @@
 mod cards;
 mod player;
-
-use cards::Deck;
+mod game;
 
 fn main() {
-    let deck = Deck::new();
-    for card in &deck.cards {
-        println!("{:?}", card);
-    };
+    game::play_game();
 }

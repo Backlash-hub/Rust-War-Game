@@ -2,7 +2,7 @@
 use rand::seq::SliceRandom;
 //Building blocks of Cards 
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Suit {
     Club,
     Diamond,
@@ -15,7 +15,7 @@ impl Suit {
 }
 
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Rank {
     Value(u8),
     Jack(u8),
